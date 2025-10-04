@@ -29,8 +29,30 @@ STEP-7: The junction character where these two meet forms the cipher character.
 STEP-8: Repeat the above steps to generate the entire cipher text.
 
 
-## PROGRAM
+## PROGRAM:
+~~~
+def vigenere_cipher(text, key, decrypt=False):
+    text = text.upper().replace(" ", "")
+    key = key.upper()
+    result = ''
+    for i in range(len(text)):
+        shift = ord(key[i % len(key)]) - ord('A')
+        if decrypt:
+            shift = 26 - shift
+        ch = (ord(text[i]) - ord('A') + shift) % 26
+        result += chr(ch + ord('A'))
+    return result
+text = "ANTO WILLIAMS"
+key = "KEY"
+encrypted = vigenere_cipher(text, key)
+decrypted = vigenere_cipher(encrypted, key, decrypt=True)
+print("Encrypted Message:", encrypted)
+print("Decrypted Message:", decrypted)
+~~~
 
-## OUTPUT
+## OUTPUT:
+<img width="1859" height="1098" alt="Screenshot 2025-10-04 092438" src="https://github.com/user-attachments/assets/4cb90f26-ce81-4651-8b6a-37fe4cc4bd7c" />
 
-## RESULT
+
+## RESULT:
+The program is executed successfully.
